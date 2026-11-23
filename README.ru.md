@@ -181,6 +181,16 @@ Defender и SmartScreen проще всего сохранить, постави
 <tr>
 <td align="center"><a href="assets/yaro-wallpaper-yellow.png"><img src="assets/yaro-wallpaper-yellow.png" width="280" alt="жёлтые"></a><br><sub>жёлтые</sub></td>
 <td align="center"><a href="assets/yaro-wallpaper-grid.png"><img src="assets/yaro-wallpaper-grid.png" width="280" alt="в клетку"></a><br><sub>в клетку</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-night.png"><img src="assets/yaro-wallpaper-dark-night.png" width="280" alt="темно-фиолетовые"></a><br><sub>темно-фиолетовые</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-dark-plum.png"><img src="assets/yaro-wallpaper-dark-plum.png" width="280" alt="темно-розовые"></a><br><sub>темно-розовые</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-ocean.png"><img src="assets/yaro-wallpaper-dark-ocean.png" width="280" alt="темно-морские"></a><br><sub>темно-морские</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-cocoa.png"><img src="assets/yaro-wallpaper-dark-cocoa.png" width="280" alt="темно-оранжевые"></a><br><sub>темно-оранжевые</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-dark-forest.png"><img src="assets/yaro-wallpaper-dark-forest.png" width="280" alt="темно-зеленые"></a><br><sub>темно-зеленые</sub></td>
+<td></td>
 <td></td>
 </tr>
 </table>
