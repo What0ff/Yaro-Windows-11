@@ -75,5 +75,9 @@ foreach ($a in 'Microsoft.Windows.DevHome', 'MicrosoftWindows.CrossDevice', 'Mic
   Get-AppxPackage -Name $a -ErrorAction SilentlyContinue | Remove-AppxPackage -ErrorAction SilentlyContinue
 }
 
+"== Wallpaper"
+$Sw = Join-Path $LogDir 'SetWallpaper.ps1'
+if ((Test-Path $Sw) -and (Test-Path 'C:\Windows\Web\Wallpaper\Yaro\yaro-wallpaper.png')) { & $Sw; "  set" } else { "  skipped (Yaro wallpaper is off)" }
+
 "Yaro FirstLogon.ps1 finished $(Get-Date)"
 Stop-Transcript -ErrorAction SilentlyContinue | Out-Null

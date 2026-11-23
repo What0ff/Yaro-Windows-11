@@ -15,6 +15,7 @@ $PauseUpdates       = $true   # Windows Update: no automatic installs, paused un
 $DisablePrinting    = $true   # print spooler OFF (printers will not work)
 $DisableBtHandsFree = $true   # Bluetooth headset mic OFF (headphones stay in stereo in games)
 $DisableVPN         = $true   # RasMan/RasAuto OFF (built-in Windows VPN will not work)
+$SetWallpaper       = $true   # Yaro notebook wallpaper on the desktop of every user
 # -----------------------------------------------------------------------------
 
 $ErrorActionPreference = 'Continue'
@@ -249,7 +250,25 @@ foreach ($s in 'ESRV_SVC_QUEENCREEK', 'USER_ESRV_SVC_QUEENCREEK', 'SystemUsageRe
 & schtasks.exe /Delete /TN 'USER_ESRV_SVC_QUEENCREEK' /F *> $null
 foreach ($s in 'IntelTelemetryAgent', 'IntelCollectorService') { Svc $s 4 }
 
-# ---------- 13. Default user profile (applies to every new user) ----------
+# ---------- 13. Wallpaper ----------
+if ($SetWallpaper) {
+  "== Wallpaper"
+  $WpDir = 'C:\Windows\Web\Wallpaper\Yaro'; $Wp = Join-Path $WpDir 'yaro-wallpaper.png'
+  $YaroDir = 'C:\Windows\Setup\Scripts\Yaro'
+  New-Item -ItemType Directory -Force -Path $WpDir, $YaroDir | Out-Null
+  $B64 = Join-Path $YaroDir 'yaro-wallpaper.b64'                              # clean install: from autounattend.xml
+  $RepoPng = Join-Path $PSScriptRoot '..\assets\yaro-wallpaper-cream.png'      # Yaro-Apply.cmd: from the repository
+  try {
+    if (Test-Path $B64) { [IO.File]::WriteAllBytes($Wp, [Convert]::FromBase64String((Get-Content $B64 -Raw))); Remove-Item $B64 -Force }
+    elseif (Test-Path $RepoPng) { Copy-Item $RepoPng $Wp -Force }
+    else { "  FAIL wallpaper image not found" }
+    $Sw = Join-Path $PSScriptRoot 'SetWallpaper.ps1'
+    if ((Test-Path $Sw) -and ((Resolve-Path $Sw).Path -ne (Join-Path $YaroDir 'SetWallpaper.ps1'))) { Copy-Item $Sw $YaroDir -Force }
+    if (Test-Path $Wp) { "  wallpaper: $Wp" }
+  } catch { "  FAIL wallpaper: $($_.Exception.Message)" }
+}
+
+# ---------- 14. Default user profile (applies to every new user) ----------
 "== Default user profile"
 & reg.exe load 'HKU\YaroDefault' 'C:\Users\Default\NTUSER.DAT' *> $null
 if ($LASTEXITCODE -eq 0) {
@@ -283,6 +302,11 @@ if ($LASTEXITCODE -eq 0) {
   R "HKU\YaroDefault\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 'SubscribedContent-338393Enabled' '0' 'REG_DWORD'
   R "HKU\YaroDefault\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 'SubscribedContent-353694Enabled' '0' 'REG_DWORD'
   R "HKU\YaroDefault\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 'SubscribedContent-353696Enabled' '0' 'REG_DWORD'
+  if ($SetWallpaper -and (Test-Path 'C:\Windows\Web\Wallpaper\Yaro\yaro-wallpaper.png')) {
+    R 'HKU\YaroDefault\Control Panel\Desktop' 'Wallpaper' 'C:\Windows\Web\Wallpaper\Yaro\yaro-wallpaper.png' 'REG_SZ'
+    R 'HKU\YaroDefault\Control Panel\Desktop' 'WallpaperStyle' '10' 'REG_SZ'
+    R 'HKU\YaroDefault\Software\Microsoft\Windows\CurrentVersion\RunOnce' 'YaroWallpaper' 'powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\Windows\Setup\Scripts\Yaro\SetWallpaper.ps1' 'REG_SZ'
+  }
   [gc]::Collect()
   & reg.exe unload 'HKU\YaroDefault' *> $null
 } else { "  FAIL could not load C:\Users\Default\NTUSER.DAT" }
