@@ -160,6 +160,23 @@ Defender and SmartScreen are best kept by setting `$DisableDefender = $false` /
 - **Something was not applied** — look for `FAIL` in `C:\Windows\Setup\Scripts\Yaro\Specialize.log`
   and `FirstLogon.log`.
 
+## Wallpapers
+
+Notebook-paper wallpapers, 1920×1080. Click a preview to open the full image, then save it.
+
+<table>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-paper-real.png"><img src="assets/yaro-wallpaper-paper-real.png" width="280" alt="realistic paper"></a><br><sub>realistic paper</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-white.png"><img src="assets/yaro-wallpaper-white.png" width="280" alt="white"></a><br><sub>white</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-cream.png"><img src="assets/yaro-wallpaper-cream.png" width="280" alt="cream"></a><br><sub>cream</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-yellow.png"><img src="assets/yaro-wallpaper-yellow.png" width="280" alt="yellow"></a><br><sub>yellow</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-grid.png"><img src="assets/yaro-wallpaper-grid.png" width="280" alt="grid"></a><br><sub>grid</sub></td>
+<td></td>
+</tr>
+</table>
+
 ## Notes
 
 - Yaro grew out of the author's own Windows 11 build used daily on a laptop with Intel Core
