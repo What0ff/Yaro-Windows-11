@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/yaro-banner.png" alt="Yaro — Windows 11, distilled" width="100%"></p>
+
 # Yaro — lean Windows 11 from the official ISO
 
 **English** | [Русский](README.ru.md)
@@ -23,6 +25,7 @@ an answer file (`autounattend.xml`) and two PowerShell scripts that apply the ch
 | `Yaro-Apply.cmd` | Applies Yaro to an already installed Windows 11. |
 | `scripts/Specialize.ps1` | System-wide changes: apps, components, services, registry. |
 | `scripts/FirstLogon.ps1` | Settings of the user, power plan, MSI mode for GPU/NVMe/network. |
+| `assets/` | Banner, logo, GitHub social preview and 1920×1080 notebook-paper wallpapers: white, cream, yellow, grid and a realistic textured paper. |
 
 ## Clean install (recommended)
 

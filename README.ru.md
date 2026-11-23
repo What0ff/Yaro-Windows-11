@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/yaro-banner.png" alt="Yaro — Windows 11, distilled" width="100%"></p>
+
 # Yaro — облегчённая Windows 11 из официального образа
 
 [English](README.md) | **Русский**
@@ -23,6 +25,7 @@ Yaro превращает чистую установку **официально
 | `Yaro-Apply.cmd` | Применяет Yaro к уже установленной Windows 11. |
 | `scripts/Specialize.ps1` | Системные изменения: приложения, компоненты, службы, реестр. |
 | `scripts/FirstLogon.ps1` | Настройки пользователя, схема питания, режим MSI для видеокарты, NVMe и сети. |
+| `assets/` | Баннер, логотип, превью для GitHub и обои 1920×1080 «тетрадный лист»: белые, бежевые, жёлтые, в клетку и реалистичная бумага с фактурой. |
 
 ## Чистая установка (рекомендуется)
 
@@ -164,6 +167,23 @@ Defender и SmartScreen проще всего сохранить, постави
 - **После установки нет интернета** — поставь сетевой драйвер с сайта производителя.
 - **Что-то не применилось** — ищи `FAIL` в `C:\Windows\Setup\Scripts\Yaro\Specialize.log`
   и `FirstLogon.log`.
+
+## Обои
+
+Обои «тетрадный лист», 1920×1080. Нажми на картинку, чтобы открыть её в полном размере, и сохрани.
+
+<table>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-paper-real.png"><img src="assets/yaro-wallpaper-paper-real.png" width="280" alt="реалистичная бумага"></a><br><sub>реалистичная бумага</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-white.png"><img src="assets/yaro-wallpaper-white.png" width="280" alt="белые"></a><br><sub>белые</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-cream.png"><img src="assets/yaro-wallpaper-cream.png" width="280" alt="бежевые"></a><br><sub>бежевые</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-yellow.png"><img src="assets/yaro-wallpaper-yellow.png" width="280" alt="жёлтые"></a><br><sub>жёлтые</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-grid.png"><img src="assets/yaro-wallpaper-grid.png" width="280" alt="в клетку"></a><br><sub>в клетку</sub></td>
+<td></td>
+</tr>
+</table>
 
 ## Примечания
 
