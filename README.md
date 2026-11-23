@@ -173,6 +173,16 @@ Notebook-paper wallpapers, 1920×1080. Click a preview to open the full image, t
 <tr>
 <td align="center"><a href="assets/yaro-wallpaper-yellow.png"><img src="assets/yaro-wallpaper-yellow.png" width="280" alt="yellow"></a><br><sub>yellow</sub></td>
 <td align="center"><a href="assets/yaro-wallpaper-grid.png"><img src="assets/yaro-wallpaper-grid.png" width="280" alt="grid"></a><br><sub>grid</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-night.png"><img src="assets/yaro-wallpaper-dark-night.png" width="280" alt="dark violet"></a><br><sub>dark violet</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-dark-plum.png"><img src="assets/yaro-wallpaper-dark-plum.png" width="280" alt="dark pink"></a><br><sub>dark pink</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-ocean.png"><img src="assets/yaro-wallpaper-dark-ocean.png" width="280" alt="dark ocean"></a><br><sub>dark ocean</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-cocoa.png"><img src="assets/yaro-wallpaper-dark-cocoa.png" width="280" alt="dark orange"></a><br><sub>dark orange</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-dark-forest.png"><img src="assets/yaro-wallpaper-dark-forest.png" width="280" alt="dark green"></a><br><sub>dark green</sub></td>
+<td></td>
 <td></td>
 </tr>
 </table>
