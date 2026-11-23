@@ -25,7 +25,8 @@ an answer file (`autounattend.xml`) and two PowerShell scripts that apply the ch
 | `Yaro-Apply.cmd` | Applies Yaro to an already installed Windows 11. |
 | `scripts/Specialize.ps1` | System-wide changes: apps, components, services, registry. |
 | `scripts/FirstLogon.ps1` | Settings of the user, power plan, MSI mode for GPU/NVMe/network. |
-| `assets/` | Banner, logo, GitHub social preview and 1920×1080 notebook-paper wallpapers: white, cream, yellow, grid and a realistic textured paper. |
+| `scripts/SetWallpaper.ps1` | Puts the Yaro wallpaper on the desktop. |
+| `assets/` | Banner, logo, GitHub social preview and 1920×1080 notebook-paper wallpapers: light (white, cream, yellow, grid, realistic paper) and dark (night sky, plum, ocean, forest, cocoa, navy, graphite, black grid, realistic black paper). |
 
 ## Clean install (recommended)
 
@@ -79,6 +80,7 @@ At the top of `Specialize.ps1` (inside `autounattend.xml` for a clean install,
 | `$DisablePrinting` | Turns off the print spooler |
 | `$DisableBtHandsFree` | Turns off the Bluetooth hands-free profile: headphones stay in stereo in games, their microphone is not used |
 | `$DisableVPN` | Turns off RasMan/RasAuto (the built-in Windows VPN and dial-up) |
+| `$SetWallpaper` | Sets the cream notebook-paper Yaro wallpaper for every user. The image is embedded in `autounattend.xml` and saved to `C:\Windows\Web\Wallpaper\Yaro\`; you can change it any time in Settings › Personalization |
 
 ## What Yaro changes
 
@@ -127,7 +129,7 @@ scheduled tasks are disabled.
 ### Interface
 Dark theme, Windows 10 context menu, *Open in Notepad* for every file, *End task* on the taskbar,
 no Search/Task view/Chat/Copilot buttons, instant menus, folders open in a separate process,
-English interface with English and Russian keyboards, developer mode on.
+English interface with English and Russian keyboards, developer mode on, Yaro wallpaper on the desktop.
 
 ### Setup
 Hardware checks (TPM, Secure Boot, CPU, RAM, storage) are skipped. No EULA, network, Microsoft
@@ -164,6 +166,8 @@ Defender and SmartScreen are best kept by setting `$DisableDefender = $false` /
 
 Notebook-paper wallpapers, 1920×1080. Click a preview to open the full image, then save it.
 
+**Light**
+
 <table>
 <tr>
 <td align="center"><a href="assets/yaro-wallpaper-paper-real.png"><img src="assets/yaro-wallpaper-paper-real.png" width="280" alt="realistic paper"></a><br><sub>realistic paper</sub></td>
@@ -173,17 +177,27 @@ Notebook-paper wallpapers, 1920×1080. Click a preview to open the full image, t
 <tr>
 <td align="center"><a href="assets/yaro-wallpaper-yellow.png"><img src="assets/yaro-wallpaper-yellow.png" width="280" alt="yellow"></a><br><sub>yellow</sub></td>
 <td align="center"><a href="assets/yaro-wallpaper-grid.png"><img src="assets/yaro-wallpaper-grid.png" width="280" alt="grid"></a><br><sub>grid</sub></td>
-<td align="center"><a href="assets/yaro-wallpaper-dark-night.png"><img src="assets/yaro-wallpaper-dark-night.png" width="280" alt="dark violet"></a><br><sub>dark violet</sub></td>
+<td></td>
+</tr>
+</table>
+
+**Dark**
+
+<table>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-dark-night.png"><img src="assets/yaro-wallpaper-dark-night.png" width="280" alt="night sky"></a><br><sub>night sky</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-plum.png"><img src="assets/yaro-wallpaper-dark-plum.png" width="280" alt="plum"></a><br><sub>plum</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-ocean.png"><img src="assets/yaro-wallpaper-dark-ocean.png" width="280" alt="ocean"></a><br><sub>ocean</sub></td>
 </tr>
 <tr>
-<td align="center"><a href="assets/yaro-wallpaper-dark-plum.png"><img src="assets/yaro-wallpaper-dark-plum.png" width="280" alt="dark pink"></a><br><sub>dark pink</sub></td>
-<td align="center"><a href="assets/yaro-wallpaper-dark-ocean.png"><img src="assets/yaro-wallpaper-dark-ocean.png" width="280" alt="dark ocean"></a><br><sub>dark ocean</sub></td>
-<td align="center"><a href="assets/yaro-wallpaper-dark-cocoa.png"><img src="assets/yaro-wallpaper-dark-cocoa.png" width="280" alt="dark orange"></a><br><sub>dark orange</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-forest.png"><img src="assets/yaro-wallpaper-dark-forest.png" width="280" alt="forest"></a><br><sub>forest</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-cocoa.png"><img src="assets/yaro-wallpaper-dark-cocoa.png" width="280" alt="cocoa"></a><br><sub>cocoa</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-paper-real.png"><img src="assets/yaro-wallpaper-dark-paper-real.png" width="280" alt="realistic black paper"></a><br><sub>realistic black paper</sub></td>
 </tr>
 <tr>
-<td align="center"><a href="assets/yaro-wallpaper-dark-forest.png"><img src="assets/yaro-wallpaper-dark-forest.png" width="280" alt="dark green"></a><br><sub>dark green</sub></td>
-<td></td>
-<td></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-navy.png"><img src="assets/yaro-wallpaper-dark-navy.png" width="280" alt="navy"></a><br><sub>navy</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-graphite.png"><img src="assets/yaro-wallpaper-dark-graphite.png" width="280" alt="graphite"></a><br><sub>graphite</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-grid.png"><img src="assets/yaro-wallpaper-dark-grid.png" width="280" alt="black grid"></a><br><sub>black grid</sub></td>
 </tr>
 </table>
 

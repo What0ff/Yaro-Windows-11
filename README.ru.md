@@ -25,7 +25,8 @@ Yaro превращает чистую установку **официально
 | `Yaro-Apply.cmd` | Применяет Yaro к уже установленной Windows 11. |
 | `scripts/Specialize.ps1` | Системные изменения: приложения, компоненты, службы, реестр. |
 | `scripts/FirstLogon.ps1` | Настройки пользователя, схема питания, режим MSI для видеокарты, NVMe и сети. |
-| `assets/` | Баннер, логотип, превью для GitHub и обои 1920×1080 «тетрадный лист»: белые, бежевые, жёлтые, в клетку и реалистичная бумага с фактурой. |
+| `scripts/SetWallpaper.ps1` | Ставит обои Yaro на рабочий стол. |
+| `assets/` | Баннер, логотип, превью для GitHub и обои 1920×1080 «тетрадный лист»: светлые (белые, бежевые, жёлтые, в клетку, реалистичная бумага) и тёмные (ночное небо, слива, океан, лес, какао, тёмно-синие, графит, чёрные в клетку, реалистичная чёрная бумага). |
 
 ## Чистая установка (рекомендуется)
 
@@ -82,6 +83,7 @@ Yaro превращает чистую установку **официально
 | `$DisablePrinting` | Отключает службу печати |
 | `$DisableBtHandsFree` | Отключает режим Hands-Free: наушники в играх не уходят в глухое моно, их микрофон не используется |
 | `$DisableVPN` | Отключает RasMan/RasAuto (встроенный VPN Windows и dial-up) |
+| `$SetWallpaper` | Ставит обои Yaro «бежевый тетрадный лист» всем пользователям. Картинка встроена в `autounattend.xml` и сохраняется в `C:\Windows\Web\Wallpaper\Yaro\`; сменить обои можно в любой момент в Параметрах › Персонализация |
 
 ## Что Yaro меняет
 
@@ -134,7 +136,7 @@ RasAuto и службы Defender при включённых опциях). Вр
 Тёмная тема, контекстное меню Windows 10, пункт *Open in Notepad* для любых файлов, *End task*
 на панели задач, без кнопок поиска, представления задач, чата и Copilot, мгновенные меню,
 папки в отдельном процессе, интерфейс на английском с раскладками English и Russian,
-включён режим разработчика.
+включён режим разработчика, на рабочем столе обои Yaro.
 
 ### Установка
 Пропускаются проверки железа (TPM, Secure Boot, процессор, ОЗУ, диск). Нет экранов лицензии,
@@ -172,6 +174,8 @@ Defender и SmartScreen проще всего сохранить, постави
 
 Обои «тетрадный лист», 1920×1080. Нажми на картинку, чтобы открыть её в полном размере, и сохрани.
 
+**Светлые**
+
 <table>
 <tr>
 <td align="center"><a href="assets/yaro-wallpaper-paper-real.png"><img src="assets/yaro-wallpaper-paper-real.png" width="280" alt="реалистичная бумага"></a><br><sub>реалистичная бумага</sub></td>
@@ -181,17 +185,27 @@ Defender и SmartScreen проще всего сохранить, постави
 <tr>
 <td align="center"><a href="assets/yaro-wallpaper-yellow.png"><img src="assets/yaro-wallpaper-yellow.png" width="280" alt="жёлтые"></a><br><sub>жёлтые</sub></td>
 <td align="center"><a href="assets/yaro-wallpaper-grid.png"><img src="assets/yaro-wallpaper-grid.png" width="280" alt="в клетку"></a><br><sub>в клетку</sub></td>
-<td align="center"><a href="assets/yaro-wallpaper-dark-night.png"><img src="assets/yaro-wallpaper-dark-night.png" width="280" alt="темно-фиолетовые"></a><br><sub>темно-фиолетовые</sub></td>
+<td></td>
+</tr>
+</table>
+
+**Тёмные**
+
+<table>
+<tr>
+<td align="center"><a href="assets/yaro-wallpaper-dark-night.png"><img src="assets/yaro-wallpaper-dark-night.png" width="280" alt="ночное небо"></a><br><sub>ночное небо</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-plum.png"><img src="assets/yaro-wallpaper-dark-plum.png" width="280" alt="слива"></a><br><sub>слива</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-ocean.png"><img src="assets/yaro-wallpaper-dark-ocean.png" width="280" alt="океан"></a><br><sub>океан</sub></td>
 </tr>
 <tr>
-<td align="center"><a href="assets/yaro-wallpaper-dark-plum.png"><img src="assets/yaro-wallpaper-dark-plum.png" width="280" alt="темно-розовые"></a><br><sub>темно-розовые</sub></td>
-<td align="center"><a href="assets/yaro-wallpaper-dark-ocean.png"><img src="assets/yaro-wallpaper-dark-ocean.png" width="280" alt="темно-морские"></a><br><sub>темно-морские</sub></td>
-<td align="center"><a href="assets/yaro-wallpaper-dark-cocoa.png"><img src="assets/yaro-wallpaper-dark-cocoa.png" width="280" alt="темно-оранжевые"></a><br><sub>темно-оранжевые</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-forest.png"><img src="assets/yaro-wallpaper-dark-forest.png" width="280" alt="лес"></a><br><sub>лес</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-cocoa.png"><img src="assets/yaro-wallpaper-dark-cocoa.png" width="280" alt="какао"></a><br><sub>какао</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-paper-real.png"><img src="assets/yaro-wallpaper-dark-paper-real.png" width="280" alt="реалистичная чёрная бумага"></a><br><sub>реалистичная чёрная бумага</sub></td>
 </tr>
 <tr>
-<td align="center"><a href="assets/yaro-wallpaper-dark-forest.png"><img src="assets/yaro-wallpaper-dark-forest.png" width="280" alt="темно-зеленые"></a><br><sub>темно-зеленые</sub></td>
-<td></td>
-<td></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-navy.png"><img src="assets/yaro-wallpaper-dark-navy.png" width="280" alt="тёмно-синие"></a><br><sub>тёмно-синие</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-graphite.png"><img src="assets/yaro-wallpaper-dark-graphite.png" width="280" alt="графит"></a><br><sub>графит</sub></td>
+<td align="center"><a href="assets/yaro-wallpaper-dark-grid.png"><img src="assets/yaro-wallpaper-dark-grid.png" width="280" alt="чёрные в клетку"></a><br><sub>чёрные в клетку</sub></td>
 </tr>
 </table>
 
