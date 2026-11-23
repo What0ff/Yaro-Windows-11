@@ -130,9 +130,10 @@ unless administrator policy requires autostart. The updater uses a separate task
   are enabled when their settings are missing. Existing graphics choices are preserved.
 - Game Bar background recording of recent gameplay is off for the current and new profiles.
   Game Mode follows the Windows setting. Device drivers choose their interrupt mode.
-- Power uses *Ultimate Performance* with a 5% minimum CPU state when Windows accepts the plan.
-  On a laptop this can cost battery life. Yaro leaves AC and battery power modes to Windows.
-  Existing global throttling, power-mode and short-name settings from older versions retain their values.
+- On Balanced and compatible plans, Yaro selects *Best Performance* when plugged in and keeps
+  the existing battery mode. If that mode is unavailable, Yaro tries the *Ultimate Performance*
+  plan with a 5% minimum CPU state. That plan can use more power on battery.
+  Global power-throttling and short-name settings from older versions retain their values.
 - No network throttling for multimedia, Edge does not preload in the background.
 - Installers and drivers do not hang for 2 minutes on certificate checks
   (short certificate download timeouts).

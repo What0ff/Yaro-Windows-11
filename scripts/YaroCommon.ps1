@@ -73,30 +73,67 @@ function Set-YaroGraphicsDefaults([string]$UserHive) {
   }
 }
 
-function Set-YaroMachinePerformance {
-  "== Power plan: Ultimate Performance, minimum CPU state 5%"
-  $scheme = 'e9a42b02-d5df-448d-aa00-03f14749eb62'
-  & powercfg.exe /query $scheme SUB_PROCESSOR *> $null
-  $schemeAvailable = $LASTEXITCODE -eq 0
-  if (-not $schemeAvailable) {
-    & powercfg.exe /duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 $scheme *> $null
-    $schemeAvailable = $LASTEXITCODE -eq 0
+function Set-YaroAcPerformanceMode {
+  $activeScheme = & powercfg.exe /getactivescheme 2>$null
+  if ($LASTEXITCODE -ne 0 -or "$activeScheme" -notmatch '\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b') {
+    return $false
   }
-  if ($schemeAvailable) {
-    $configured = $true
-    foreach ($command in '/setacvalueindex', '/setdcvalueindex') {
-      & powercfg.exe $command $scheme SUB_PROCESSOR PROCTHROTTLEMIN 5 *> $null
-      if ($LASTEXITCODE -ne 0) {
-        $configured = $false
-        Write-YaroFailure "powercfg $command (exit $LASTEXITCODE)"
-      }
+  $scheme = [guid]$Matches[0]
+  try {
+    if (-not ('Yaro.PowerMode' -as [type])) {
+      Add-Type -Namespace Yaro -Name PowerMode -ErrorAction Stop -MemberDefinition @'
+[DllImport("powrprof.dll", ExactSpelling = true)]
+public static extern uint PowerReadACValueIndex(IntPtr root, ref Guid scheme, ref Guid subgroup, ref Guid setting, out uint index);
+[DllImport("powrprof.dll", ExactSpelling = true)]
+public static extern uint PowerSetUserConfiguredACPowerMode(ref Guid mode);
+'@
     }
-    if ($configured) {
-      & powercfg.exe /setactive $scheme *> $null
-      if ($LASTEXITCODE -ne 0) { Write-YaroFailure "power plan activation (exit $LASTEXITCODE)" }
-    }
+
+    # The power-mode selector applies only to Balanced and plans derived from it.
+    $noSubgroup = [guid]'fea3413e-7e05-4911-9a71-700331f1c294'
+    $personalitySetting = [guid]'245d8541-3943-4422-b025-13a784f679b7'
+    $personality = [uint32]0
+    $status = [Yaro.PowerMode]::PowerReadACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$noSubgroup, [ref]$personalitySetting, [ref]$personality)
+    if ($status -ne 0 -or $personality -ne 2) { return $false } # 2 = Balanced
+
+    $bestPerformance = [guid]'ded574b5-45a0-4f42-8737-46345c09c238'
+    $status = [Yaro.PowerMode]::PowerSetUserConfiguredACPowerMode([ref]$bestPerformance)
+    if ($status -eq 0) { return $true }
+    Write-Warning "Could not set Best Performance on AC (Windows error $status)"
+  } catch {
+    Write-Warning "Could not set Best Performance on AC: $($_.Exception.Message)"
+  }
+  return $false
+}
+
+function Set-YaroMachinePerformance {
+  if (Set-YaroAcPerformanceMode) {
+    "== Power mode: Best Performance when plugged in"
   } else {
-    Write-YaroFailure 'Ultimate Performance plan unavailable'
+    "== Power plan: Ultimate Performance, minimum CPU state 5%"
+    $scheme = 'e9a42b02-d5df-448d-aa00-03f14749eb62'
+    & powercfg.exe /query $scheme SUB_PROCESSOR *> $null
+    $schemeAvailable = $LASTEXITCODE -eq 0
+    if (-not $schemeAvailable) {
+      & powercfg.exe /duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 $scheme *> $null
+      $schemeAvailable = $LASTEXITCODE -eq 0
+    }
+    if ($schemeAvailable) {
+      $configured = $true
+      foreach ($command in '/setacvalueindex', '/setdcvalueindex') {
+        & powercfg.exe $command $scheme SUB_PROCESSOR PROCTHROTTLEMIN 5 *> $null
+        if ($LASTEXITCODE -ne 0) {
+          $configured = $false
+          Write-YaroFailure "powercfg $command (exit $LASTEXITCODE)"
+        }
+      }
+      if ($configured) {
+        & powercfg.exe /setactive $scheme *> $null
+        if ($LASTEXITCODE -ne 0) { Write-YaroFailure "power plan activation (exit $LASTEXITCODE)" }
+      }
+    } else {
+      Write-YaroFailure 'Ultimate Performance plan unavailable'
+    }
   }
 
   "== Memory compression"
